@@ -1,6 +1,31 @@
-let res = "";
-let i;
-for (let i = 20; i <= 30; i += 0.5){
-	res = res + i + ", ";
+let company = {
+  sales: [
+    { name: "John", salary: 2000 },
+    { name: "Alice", salary: 2500 },
+    { name: "Bob", salary: 2200 },
+  ],
+  development: {
+    webDepartment: [
+      { name: "Emma", salary: 3000 },
+      { name: "Mike", salary: 2800 },
+    ],
+    smmDepartment: [{ name: "Sophia", salary: 2400 }],
+  },
+};
+
+function calculateTotalSalary(department) {
+  let totalSalary = 0;
+  if (Array.isArray(department)) {
+    department.forEach((employee) => {
+      totalSalary += employee.salary;
+    });
+  } else {
+    for (let key in department) {
+      totalSalary += calculateTotalSalary(department[key]);
+    }
+  }
+  return totalSalary;
 }
-console.log(res);
+
+let totalSalary = calculateTotalSalary(company);
+console.log("Загальна сума зарплат у всій компанії:", totalSalary);
