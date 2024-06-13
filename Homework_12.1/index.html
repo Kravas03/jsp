@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>123</title>
+  </head>
+
+  <body>
+    <button id="getLink">Get link</button>
+    <button id="linkButton">
+      <a href="" id="link">Use link</a>
+    </button>
+		
+    <script>
+      let getUserLink = document.getElementById("getLink");
+      let buttonLink = document.getElementById("linkButton");
+      let useUserLink = document.getElementById("link");
+      getUserLink.addEventListener("click", function () {
+        const userLink = prompt(
+          "Enter link",
+          "https://www.google.com.ua/?hl=uk"
+        );
+        useUserLink.href = userLink;
+      });
+    </script>
+  </body>
+</html>
