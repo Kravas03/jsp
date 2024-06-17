@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="validation-window">
+      <h2>We would like to help you</h2>
+      <form id="form">
+        <label for="name"
+          >Name
+          <input type="text" id="name" name="name" placeholder="Name" />
+          <span id="nameError" class="error"></span>
+        </label>
+
+        <label for="message"
+          >Message
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Message"
+          ></textarea>
+          <span id="messageError" class="error"></span>
+        </label>
+
+        <label for="phone"
+          >Phone number
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone number"
+          />
+          <span id="phoneError" class="error"></span>
+        </label>
+
+        <label for="email"
+          >Name
+          <input type="email" id="email" name="email" placeholder="Email" />
+          <span id="emailError" class="error"></span>
+        </label>
+        <button type="submit" class="submit-btn">Send message</button>
+      </form>
+    </div>
+    <script>
+      document.querySelector("#form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const userInputName = document.querySelector("#name").value;
+        const userInputMessage = document.querySelector("#message").value;
+        const userInputPhone = document.querySelector("#phone").value;
+        const userInputEmail = document.querySelector("#email").value;
+        document.querySelector("#nameError").textContent = "";
+        document.querySelector("#messageError").textContent = "";
+        document.querySelector("#phoneError").textContent = "";
+        document.querySelector("#emailError").textContent = "";
+
+        const nameRegex = /^[А-Яа-яЁёA-Za-z]+$/;
+        const messageRegex = /^.{5,}$/;
+        const phoneRegex = /^\+380\d{9}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let valid = true;
+        if (!nameRegex.test(userInputName)) {
+          document.querySelector("#nameError").textContent =
+            "Имя введено некорректно. Используйте руские или английские буквы.";
+          valid = false;
+        }
+        if (!messageRegex.test(userInputMessage)) {
+          document.querySelector("#messageError").textContent =
+            "Не меньше 5 символов.";
+          valid = false;
+        }
+        if (!phoneRegex.test(userInputPhone)) {
+          document.querySelector("#phoneError").textContent =
+            "Вы ввели номер телефона некорректно ";
+          valid = false;
+        }
+        if (!emailRegex.test(userInputEmail)) {
+          document.querySelector("#emailError").textContent =
+            "Введите правильный формат на примере: example@example.com";
+          valid = false;
+        }
+        if (valid) {
+          console.log("Name:", userInputName);
+          console.log("Message:", userInputMessage);
+          console.log("Phone:", userInputPhone);
+          console.log("Email:", userInputEmail);
+        }
+      });
+    </script>
+  </body>
+</html>
